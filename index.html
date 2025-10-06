@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>UNDITOTO - PREDIKSI TOGEL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            font-family: Arial, sans-serif;
+        }
+
+        .bg-side {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 320px;
+            z-index: 1;
+            background: transparent;
+        }
+
+        .bg-left {
+            left: 0;
+            background: url('https://i.postimg.cc/X7CFhqKM/download.jpg') no-repeat left center;
+            background-size: cover;
+        }
+
+        .bg-right {
+            right: 0;
+            background: url('https://i.postimg.cc/X7CFhqKM/download.jpg') no-repeat right center;
+            background-size: cover;
+        }
+
+        .main-content {
+            margin: 0 340px;
+            padding: 32px 0;
+            z-index: 2;
+            position: relative;
+        }
+
+        .banner {
+            background: #222;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px #000;
+            padding: 24px;
+            text-align: center;
+            color: #ffe600;
+            margin-bottom: 32px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            background: linear-gradient(to bottom, #a844fb 0, #3ebbf3 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 28px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to bottom, #3ebbf3 0, #d6d1db 100%);
+        }
+
+        .prediksi-list {
+            background: #111;
+            border-radius: 8px;
+            padding: 16px;
+            color: #fff;
+        }
+
+        .prediksi-item {
+            border-bottom: 1px solid #6984fa;
+            padding: 8px 0;
+        }
+
+        @media (max-width: 900px) {
+            .bg-side {
+                display: none;
+            }
+
+            .main-content {
+                margin: 0;
+            }
+        }
+
+        /* modal styles for prediksi detail */
+        .prediksi-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .prediksi-modal {
+            background: #000;
+            color: #0f0;
+            padding: 20px;
+            border-radius: 10px;
+            width: 380px;
+            max-width: calc(100% - 40px);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .prediksi-modal h3 {
+            color: #fff;
+            margin: 8px 0;
+        }
+
+        .prediksi-modal .angka-main {
+            color: #0f0;
+            font-size: 1.4rem;
+            margin: 8px 0;
+        }
+
+        .prediksi-modal .close-btn {
+            margin-top: 12px;
+            padding: 8px 14px;
+            background: #2432f0;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .prediksi-highlight {
+            box-shadow: 0 0 0 4px rgba(36, 50, 240, 0.12) inset, 0 8px 30px rgba(36, 50, 240, 0.08);
+            border-radius: 6px;
+            background: rgba(36, 50, 240, 0.03);
+            transition: background .35s, box-shadow .35s;
+        }
+    </style>
+</head>
+
+<body>
+    <div
+        style="width:100%;display:flex;justify-content:center;align-items:center;background:#2432f0;padding:12px 0 8px 0;position:relative;z-index:10;">
+        <nav style="display:flex;gap:32px;">
+            <a href="/"
+                style="color:#ffffff;font-weight:bold;text-decoration:none;font-size:1.15em;transition:.2s;">HOME</a>
+            <a href="#"
+                style="color:#ffffff;font-weight:bold;text-decoration:none;font-size:1.15em;transition:.2s;">LIVE
+                DRAW</a>
+            <a href="#"
+                style="color:#fffcfc;font-weight:bold;text-decoration:none;font-size:1.15em;transition:.2s;">PREDIKSI
+                TOGEL</a>
+            <a href="#" target="_blank"
+                style="color:#ffffff;font-weight:bold;text-decoration:none;font-size:1.15em;transition:.2s;">SLOT
+                GACOR</a>
+        </nav>
+    </div>
+    <!-- NAVIGATION MOBILE MENU START -->
+    <div id="navmobile" class="sidenav d-lg-none">
+        <div class="bg-side bg-left"></div>
+        <div class="bg-side bg-right"></div>
+        <div class="main-content">
+            <div class="banner">
+                <div
+                    style="position:absolute;top:12px;right:24px;background:#2432f0;color:#fff;padding:7px 16px;border-radius:8px;font-weight:bold;font-size:1em;z-index:100;box-shadow:0 2px 8px #000;">
+                    <span id="live-date"></span> <span id="live-time"></span>
+                </div>
+                <script>
+                    function updateLiveDateTime() {
+                        var now = new Date();
+                        var days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+                        var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                        var day = days[now.getDay()];
+                        var date = now.getDate();
+                        var month = months[now.getMonth()];
+                        var year = now.getFullYear();
+                        var hours = now.getHours().toString().padStart(2, '0');
+                        var minutes = now.getMinutes().toString().padStart(2, '0');
+                        var seconds = now.getSeconds().toString().padStart(2, '0');
+                        document.getElementById('live-date').textContent = day + ', ' + date + ' ' + month + ' ' + year;
+                        document.getElementById('live-time').textContent = hours + ':' + minutes + ':' + seconds;
+                    }
+                    setInterval(updateLiveDateTime, 1000);
+                    updateLiveDateTime();
+                </script>
+                <div
+                    style="background:#2432f0;color:#ffffff;font-weight:bold;padding:8px 0;border-radius:6px 6px 0 0;margin-bottom:10px;overflow:hidden;">
+                    <marquee behavior="scroll" direction="left" scrollamount="7">
+                        UNDITOTO MEMBERIKAN BOCORAN ANGKA JITU SETIAP HARI NYA UNTUK MEMBANTU MEMBER MERASAKAN NIKMAT
+                        NYA JP 4D !!
+                    </marquee>
+                    <div style="width:100%;height:3px;background:#fff;margin-top:6px;"></div>
+                </div>
+
+                </a>
+                <img src="https://i.postimg.cc/jjh2t5y9/BANNERTERBARU-UNDITOTO.png" alt="Banner UNDITOTO"
+                    style="max-width:100%;border-radius:8px;margin-bottom:18px;">
+                <h1>UNDITOTO - PREDIKSI TOGEL TERBAIK</h1>
+                <div class="btn-group">
+                    <a href="#" class="btn">Login</a>
+                    <a href="#" class="btn">Promo</a>
+                    <a href="#" class="btn">RTP Slot</a>
+                </div>
+                <p>Event spesial bonus member baru, proses cepat tanpa ribet, masuk di awal to rendah. Update terbaru
+                    bonus
+                    Cashback terbanyak!</p>
+            </div>
+            <div class="prediksi-list">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">
+                    <h2 style="margin:0;">PREDIKSI TOGEL HARI INI LENGKAP UNDITOTO 2025</h2>
+                    <form>
+                        <select id="selectprediksi" class="form-select form-select-sm mb-3" aria-label="Select pasaran"
+                            style="min-width:180px;">
+                            <option value="0" id="pilihpass" selected>Cari Pasaran</option>
+                            <option class="pasaranv" value="totomacau-00">TOTOMACAU 4D 00:15 WIB</option>
+                            <option class="pasaranv" value="kentucky-mid">KENTUCKYMID</option>
+                            <option class="pasaranv" value="florida-mid">FLORIDAMID</option>
+                            <option class="pasaranv" value="nebraska">NEWYORKMID</option>
+                            <option class="pasaranv" value="montana">CAROLINADAY</option>
+                            <option class="pasaranv" value="sapporo-mid">OREGON03</option>
+                            <option class="pasaranv" value="newyork-mid">OREGON06</option>
+                            <option class="pasaranv" value="michigan">CALIFORNIA</option>
+                            <option class="pasaranv" value="carolina-day">FLORIDAEVE</option>
+                            <option class="pasaranv" value="ohio">OREGON09</option>
+                            <option class="pasaranv" value="colorado">NEWYORKEVE</option>
+                            <option class="pasaranv" value="oregon3">KENTUCKYEVE</option>
+                            <option class="pasaranv" value="india-mor">CAROLINAEVE</option>
+                            <option class="pasaranv" value="athens">CAMBODIA</option>
+                            <option class="pasaranv" value="oregon6">OREGON12</option>
+                            <option class="pasaranv" value="california">BULLSEYE</option>
+                            <option class="pasaranv" value="florida-eve">TOTOMACAU 4D 13:15 WIB</option>
+                            <option class="pasaranv" value="oregon9">SYDNEY LOTTO</option>
+                            <option class="pasaranv" value="newyork-eve">TOTOMACAU 5D 15:30 WIB</option>
+                            <option class="pasaranv" value="kentucky-eve">CHINA</option>
+                            <option class="pasaranv" value="carolina-eve">TOTOMACAU 4D 16:15 WIB</option>
+                            <option class="pasaranv" value="lisbon-mor">JAPAN</option>
+                            <option class="pasaranv" value="lisbon-mor">SINGAPORE</option>
+                            <option class="pasaranv" value="lisbon-mor">MAGNUM4D </option>
+                            <option class="pasaranv" value="lisbon-mor">TOTOMACAU 4D 19:15 WIB</option>
+                            <option class="pasaranv" value="lisbon-mor">PCSO </option>
+                            <option class="pasaranv" value="lisbon-mor">TAIWAN </option>
+                            <option class="pasaranv" value="lisbon-mor">TOTOMACAU 5D 21:30 WIB </option>
+                            <option class="pasaranv" value="lisbon-mor">TOTOMACAU 4D 22:15 WIB</option>
+                            <option class="pasaranv" value="lisbon-mor">HONGKONG LOTTO</option>
+                            <option class="pasaranv" value="lisbon-mor">TOTOMACAU 4D 23:15 WIB</option>
+                            <option class="pasaranv" value="lisbon-mor">HONGKONG LOTTO</option>
+                        </select>
+                    </form>
+                </div>
+                <!-- detail container for when a specific pasaran is selected -->
+                <div id="prediksiDetail" style="display:none;margin-bottom:18px;color:#fff;"></div>
+                <!-- modal backdrop for detail preview (script expects #prediksiModalBackdrop and #closePrediksiModal) -->
+                <div id="prediksiModalBackdrop" class="prediksi-modal-backdrop" aria-hidden="true"
+                    style="display:none;">
+                    <div class="prediksi-modal">
+                        <div id="prediksiModalContent">
+                            <!-- content is injected into #prediksiDetail, keep modal for backdrop/close -->
+                            <p style="color:#fff;margin:0;">Preview</p>
+                        </div>
+                        <button id="closePrediksiModal" class="close-btn">Tutup</button>
+                    </div>
+                </div>
+                <div class="prediksi-item" data-pasaran="totomacau-00">PREDIKSI TOGEL TOTOMACAU 4D 00:15 WIB
+                    (06/10/2025)</div>
+                <div class="prediksi-item" data-pasaran="kentucky-mid">PREDIKSI TOGEL KENTUCKY-MID (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL FLORIDAMID (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL NEWYORKMID (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL CAROLINADAY (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL OREGON03 (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL OREGON06 (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL CALIFORNIA (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL FLORIDAEVE (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL OREGON09 (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL NEWYORKEVE (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL KENTUCKYEVE (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL CAROLINAEVE (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL CAMBODIA (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL OREGON12 (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL BULLSEYE (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 4D 13:15 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL SYDNEY LOTTO (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 5D 15:30 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL CHINA (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 4D 16:15 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL KINGKONG-4D 17:00 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL JAPAN (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL SINGAPORE (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL MAGNUM4D (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 4D 19:15 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL PCSO (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TAIWAN (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 5D 21:30 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 4D 22:15 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL HONGKONG LOTTO (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 4D 23:15 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL KINGKONG-4D 23:30 WIB (06/10/2025)</div>
+                <!-- Tambahkan prediksi lainnya sesuai kebutuhan -->
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        (function () {
+            function showPrediksiByPasaran(pasaran) {
+                var items = Array.prototype.slice.call(document.querySelectorAll('.prediksi-item'));
+                if (!items || items.length === 0) return null;
+                if (!pasaran || pasaran === '0') {
+                    items.forEach(function (it) { it.style.display = 'block'; });
+                    return null;
+                }
+                var sel = document.getElementById('selectprediksi');
+                var optText = '';
+                if (sel) {
+                    var opt = sel.querySelector('option[value="' + pasaran + '"]');
+                    if (opt) optText = opt.textContent.trim().toLowerCase();
+                }
+                var firstMatch = null;
+                items.forEach(function (item) {
+                    var text = (item.textContent || item.innerText || '').trim().toLowerCase();
+                    var data = (item.getAttribute('data-pasaran') || '').toLowerCase();
+                    var match = false;
+                    if (data) {
+                        match = data === pasaran.toLowerCase() || data.indexOf(pasaran.toLowerCase()) !== -1;
+                    }
+                    if (!match && optText) match = text.indexOf(optText) !== -1;
+                    if (!match) match = text.indexOf(pasaran.toLowerCase()) !== -1;
+                    if (match) {
+                        item.style.display = 'block';
+                        if (!firstMatch) firstMatch = item;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                return firstMatch;
+            }
+
+            var selectEl = document.getElementById('selectprediksi');
+            var backdrop = document.getElementById('prediksiModalBackdrop');
+            var closeBtn = document.getElementById('closePrediksiModal');
+            function openModal() { if (backdrop) { backdrop.style.display = 'flex'; backdrop.setAttribute('aria-hidden', 'false'); } }
+            function closeModal() { if (backdrop) { backdrop.style.display = 'none'; backdrop.setAttribute('aria-hidden', 'true'); } }
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            if (backdrop) backdrop.addEventListener('click', function (ev) { if (ev.target === backdrop) closeModal(); });
+
+            function highlightOnce(el) {
+                if (!el) return;
+                el.classList.add('prediksi-highlight');
+                try { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) { el.scrollIntoView(); }
+                setTimeout(function () { el.classList.remove('prediksi-highlight'); }, 2200);
+            }
+
+            var detailContainer = document.getElementById('prediksiDetail');
+            function showTotomacauDetail() {
+                if (!detailContainer) return;
+                detailContainer.innerHTML = `
+                                                <div style="max-width:720px;margin:0 auto;text-align:left;">
+                                                    <div style="margin-bottom:6px;">
+                                                        <button type="button" onclick="window.location.href='/'" class="btn btn-sm btn-warning" style="position:relative;left:-340px;"><i class="fas fa-arrow-left"></i> Beranda Prediksi</button>
+                                                    </div>
+                                                    <div style="text-align:center;">    
+                                                        <h3 class="text-center text-uppercase">PREDIKSI TOTOMACAU 4D 00:15 WIB TOGEL HARI INI UNDITOTO 06 Oct 2025</h3>
+                                                        <hr class="w-75 d-block mx-auto">
+                                                        <div class="text-center wrap-pred">
+                                                            <img class="img-fluid rounded my-3" width="120" height="120" src="https://i.postimg.cc/6pyPRSCS/totomacau-00.webp" alt="totomacau" />
+                                                            <h5>✅ ANGKA MAIN:</h5>
+                                                            <h4 class="text-warning">( 67453 )</h4>
+                                                            <h5 class="my-2">TOP 4D (BB) :</h5>
+                                                            <h4 class="text-warning">6745*6743*6754*6753*6734*6735</h4>
+                                                            <h5 class="my-2">TOP 3D (BB) :</h5>
+                                                            <h4 class="text-warning">674*675*673*647*645*643*657</h4>
+                                                            <h5 class="my-2">TOP 2D (BB) :</h5>
+                                                            <h4 class="text-warning">67*64*65*63*76*74*75*73*46</h4>
+
+                                                            <h5 class="mt-4">COLOK BEBAS :</h5>
+                                                            <h4 class="text-warning">7 / 3</h4>
+                                                            <h5 class="my-2">COLOK 2D :</h5>
+                                                            <h4 class="text-warning">45 / 74</h4>
+
+                                                            <h5 class="my-2">SHIO JITU :</h5>
+                                                            <h4 class="text-warning">Naga</h4>
+                                                        </div>
+                                                        <p class="text-center mt-5 text-uppercase">Prediksi totomacau-00 sebelumnya:</p>
+                                                        <hr class="w-75 d-block mx-auto">
+                                                    </div>
+                                                </div>
+                                        `;
+                detailContainer.style.display = 'block';
+                var modalContent = document.getElementById('prediksiModalContent');
+                if (modalContent) modalContent.innerHTML = detailContainer.innerHTML;
+            }
+            function showKentuckyDetail() {
+                if (!detailContainer) return;
+                detailContainer.innerHTML = `
+                                                <div style="max-width:720px;margin:0 auto;text-align:left;">
+                                                    <div style="margin-bottom:6px;">
+                                                        <button type="button" onclick="window.location.href='/'" class="btn btn-sm btn-warning" style="position:relative;left:-340px;"><i class="fas fa-arrow-left"></i> Beranda Prediksi</button>
+                                                    </div>
+                                                    <div style="text-align:center;">    
+                                                        <h3 class="text-center text-uppercase">PREDIKSI KENTUCKY-MID TOGEL HARI INI UNDITOTO 06 Oct 2025</h3>
+                                                        <hr class="w-75 d-block mx-auto">
+                                                        <div class="text-center wrap-pred">
+                                                            <img class="img-fluid rounded my-3" width="120" height="120" src="https://i.postimg.cc/fRGTPkQ7/kentucky-mid.webp" alt="kentucky" />
+                                                            <h5>✅ ANGKA MAIN:</h5>
+                                                            <h4 class="text-warning">( 67453 )</h4>
+                                                            <h5 class="my-2">TOP 4D (BB) :</h5>
+                                                            <h4 class="text-warning">6745*6743*6754*6753*6734*6735</h4>
+                                                            <h5 class="my-2">TOP 3D (BB) :</h5>
+                                                            <h4 class="text-warning">674*675*673*647*645*643*657</h4>
+                                                            <h5 class="my-2">TOP 2D (BB) :</h5>
+                                                            <h4 class="text-warning">67*64*65*63*76*74*75*73*46</h4>
+
+                                                            <h5 class="mt-4">COLOK BEBAS :</h5>
+                                                            <h4 class="text-warning">7 / 3</h4>
+                                                            <h5 class="my-2">COLOK 2D :</h5>
+                                                            <h4 class="text-warning">45 / 74</h4>
+
+                                                            <h5 class="my-2">SHIO JITU :</h5>
+                                                            <h4 class="text-warning">Naga</h4>
+                                                        </div>
+                                                        <p class="text-center mt-5 text-uppercase">Prediksi kentucky-mid sebelumnya:</p>
+                                                        <hr class="w-75 d-block mx-auto">
+                                                    </div>
+                                                </div>
+                                        `;
+                detailContainer.style.display = 'block';
+                var modalContent = document.getElementById('prediksiModalContent');
+                if (modalContent) modalContent.innerHTML = detailContainer.innerHTML;
+            }
+            function hideDetail() { if (detailContainer) { detailContainer.style.display = 'none'; detailContainer.innerHTML = ''; } }
+
+            if (selectEl) {
+                selectEl.addEventListener('change', function (e) {
+                    var val = e.target.value;
+                    if (val === 'totomacau-00') {
+                        openModal();
+                        showTotomacauDetail();
+                    } else if (val === 'kentucky-mid') {
+                        openModal();
+                        showKentuckyDetail();
+                    } else {
+                        closeModal();
+                        hideDetail();
+                    }
+                    var matched = showPrediksiByPasaran(val);
+                    if (matched) highlightOnce(matched);
+                });
+            }
+
+            // default: hide detail and show all
+            hideDetail();
+            showPrediksiByPasaran('0');
+        })();
+    </script>
+
+    </div>
+    <!-- Code injected by live-server -->
+    <script>
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+            (function () {
+                function refreshCSS() {
+                    var sheets = [].slice.call(document.getElementsByTagName("link"));
+                    var head = document.getElementsByTagName("head")[0];
+                    for (var i = 0; i < sheets.length; ++i) {
+                        var elem = sheets[i];
+                        var parent = elem.parentElement || head;
+                        parent.removeChild(elem);
+                        var rel = elem.rel;
+                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                        }
+                        parent.appendChild(elem);
+                    }
+                }
+                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                var address = protocol + window.location.host + window.location.pathname + '/ws';
+                var socket = new WebSocket(address);
+                socket.onmessage = function (msg) {
+                    if (msg.data == 'reload') window.location.reload();
+                    else if (msg.data == 'refreshcss') refreshCSS();
+                };
+                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                    console.log('Live reload enabled.');
+                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                }
+            })();
+        }
+        else {
+            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+        }
+        // ]]>
+    </script>
+</body>
+
+</html>
