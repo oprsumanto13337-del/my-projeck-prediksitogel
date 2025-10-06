@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>UNDITOTO - PREDIKSI TOGEL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            font-family: Arial, sans-serif;
+        }
+
+        .bg-side {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 320px;
+            z-index: 1;
+            background: transparent;
+        }
+
+        .bg-left {
+            left: 0;
+            background: url('https://i.postimg.cc/X7CFhqKM/download.jpg') no-repeat left center;
+            background-size: cover;
+        }
+
+        .bg-right {
+            right: 0;
+            background: url('https://i.postimg.cc/X7CFhqKM/download.jpg') no-repeat right center;
+            background-size: cover;
+        }
+
+        .main-content {
+            margin: 0 340px;
+            padding: 32px 0;
+            z-index: 2;
+            position: relative;
+        }
+
+        .banner {
+            background: #222;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px #000;
+            padding: 24px;
+            text-align: center;
+            color: #ffe600;
+            margin-bottom: 32px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            background: linear-gradient(to bottom, #a844fb 0, #3ebbf3 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 28px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to bottom, #3ebbf3 0, #d6d1db 100%);
+        }
+
+        .prediksi-list {
+            background: #111;
+            border-radius: 8px;
+            padding: 16px;
+            color: #fff;
+        }
+
+        .prediksi-item {
+            border-bottom: 1px solid #6984fa;
+            padding: 8px 0;
+        }
+
+        @media (max-width: 900px) {
+            .bg-side {
+                display: none;
+            }
+
+            .main-content {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div
+        style="width:100%;display:flex;justify-content:center;align-items:center;background:#2432f0;padding:12px 0 8px 0;position:relative;z-index:10;">
+        <nav style="display:flex;gap:32px;">
+            <a href="/"
+                style="color:#ffffff;font-weight:bold;text-decoration:none;font-size:1.15em;transition:.2s;">HOME</a>
+            <a href="#"
+                style="color:#ffffff;font-weight:bold;text-decoration:none;font-size:1.15em;transition:.2s;">LIVE
+                DRAW</a>
+            <a href="#"
+                style="color:#fffcfc;font-weight:bold;text-decoration:none;font-size:1.15em;transition:.2s;">PREDIKSI
+                TOGEL</a>
+            <a href="#" target="_blank"
+                style="color:#ffffff;font-weight:bold;text-decoration:none;font-size:1.15em;transition:.2s;">SLOT
+                GACOR</a>
+        </nav>
+    </div>
+    <!-- NAVIGATION MOBILE MENU START -->
+    <div id="navmobile" class="sidenav d-lg-none">
+        <div class="bg-side bg-left"></div>
+        <div class="bg-side bg-right"></div>
+        <div class="main-content">
+            <div class="banner">
+                <div
+                    style="position:absolute;top:12px;right:24px;background:#2432f0;color:#fff;padding:7px 16px;border-radius:8px;font-weight:bold;font-size:1em;z-index:100;box-shadow:0 2px 8px #000;">
+                    <span id="live-date"></span> <span id="live-time"></span>
+                </div>
+                <script>
+                    function updateLiveDateTime() {
+                        var now = new Date();
+                        var days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+                        var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                        var day = days[now.getDay()];
+                        var date = now.getDate();
+                        var month = months[now.getMonth()];
+                        var year = now.getFullYear();
+                        var hours = now.getHours().toString().padStart(2, '0');
+                        var minutes = now.getMinutes().toString().padStart(2, '0');
+                        var seconds = now.getSeconds().toString().padStart(2, '0');
+                        document.getElementById('live-date').textContent = day + ', ' + date + ' ' + month + ' ' + year;
+                        document.getElementById('live-time').textContent = hours + ':' + minutes + ':' + seconds;
+                    }
+                    setInterval(updateLiveDateTime, 1000);
+                    updateLiveDateTime();
+                </script>
+                <div
+                    style="background:#2432f0;color:#ffffff;font-weight:bold;padding:8px 0;border-radius:6px 6px 0 0;margin-bottom:10px;overflow:hidden;">
+                    <marquee behavior="scroll" direction="left" scrollamount="7">
+                        UNDITOTO MEMBERIKAN BOCORAN ANGKA JITU SETIAP HARI NYA UNTUK MEMBANTU MEMBER MERASAKAN NIKMAT
+                        NYA JP 4D !!
+                    </marquee>
+                    <div style="width:100%;height:3px;background:#fff;margin-top:6px;"></div>
+                </div>
+
+                </a>
+                <img src="https://i.postimg.cc/jjh2t5y9/BANNERTERBARU-UNDITOTO.png" alt="Banner UNDITOTO"
+                    style="max-width:100%;border-radius:8px;margin-bottom:18px;">
+                <h1>UNDITOTO - PREDIKSI TOGEL TERBAIK</h1>
+                <div class="btn-group">
+                    <a href="#" class="btn">Login</a>
+                    <a href="#" class="btn">Promo</a>
+                    <a href="#" class="btn">RTP Slot</a>
+                </div>
+                <p>Event spesial bonus member baru, proses cepat tanpa ribet, masuk di awal to rendah. Update terbaru
+                    bonus
+                    Cashback terbanyak!</p>
+            </div>
+            <div class="prediksi-list">
+                <h2>PREDIKSI TOGEL HARI INI LENGKAP UNDITOTO 2025</h2>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 4D 00:15 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL KENTUCKY-MID (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL FLORIDAMID (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL NEWYORKMID (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL CAROLINADAY (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL OREGON03 (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL OREGON06 (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL CALIFORNIA (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL FLORIDAEVE (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL OREGON09 (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL NEWYORKEVE (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL KENTUCKYEVE (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL CAROLINAEVE (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL CAMBODIA (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL OREGON12 (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL BULLSEYE (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 4D 13:15 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL SYDNEY LOTTO (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 5D 15:30 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL CHINA (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 4D 16:15 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL KINGKONG-4D 17:00 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL JAPAN (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL SINGAPORE (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL MAGNUM4D (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 4D 19:15 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL PCSO (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TAIWAN (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 5D 21:30 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 4D 22:15 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL HONGKONG LOTTO (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL TOTOMACAU 4D 23:15 WIB (06/10/2025)</div>
+                <div class="prediksi-item">PREDIKSI TOGEL KINGKONG-4D 23:30 WIB (06/10/2025)</div>
+                <!-- Tambahkan prediksi lainnya sesuai kebutuhan -->
+            </div>
+        </div>
+</body>
+
+</html>
